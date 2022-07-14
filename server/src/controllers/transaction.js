@@ -239,11 +239,13 @@ const updateProduct = async (orderId) => {
       id: orderId,
     },
   });
+
   const productData = await product.findOne({
     where: {
       id: transactionData.idProduct,
     },
   });
+  
   const qty = productData.qty - 1;
   await product.update({ qty }, { where: { id: productData.id } });
 };
